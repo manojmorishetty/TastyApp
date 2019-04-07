@@ -31,6 +31,7 @@
 </div>
 
 <div class="row" style=" width:1300px;">
+    <!--1.1-->
     <div class="column" style="float:left">
         <img src="~/Content/NewFolder1/burger.jpg" style="width:400px;height:300px;">
         <table>
@@ -43,10 +44,13 @@
                 <td>$100</td>
             </tr>
         </table>
+
+        <button type="button">Add to Cart</button>
     </div>
 
+    <!--1.2-->
     <div class="column" style="float:left; padding-left:10px;">
-        <img src="~/Content/NewFolder1/pizza.jpg" alt="Pizza" style=" padding-left:10px ; width:400px;height:300px;">
+        <img src="~/Content/NewFolder1/fish_sushi.jpg" alt="Pizza" style=" padding-left:10px ; width:400px;height:300px;">
         <table style="padding-left:50px">
             <tr>
                 <th>Month</th>
@@ -57,11 +61,13 @@
                 <td>$100</td>
             </tr>
         </table>
+
+        <button type="button">Add to Cart</button>
     </div>
 
-
+    <!--1.3-->
     <div class="column" style="float:left;padding-left:10px">
-        <img src="~/Content/NewFolder1/pizza.jpg" alt="Pizza" style="padding-left:10px; width:400px;height:300px;">
+        <img src="~/Content/NewFolder1/friedrice.jpg" alt="Pizza" style="padding-left:10px; width:400px;height:300px;">
         <table style="padding-left:10px">
             <tr>
                 <th>Month</th>
@@ -72,10 +78,14 @@
                 <td>$100</td>
             </tr>
         </table>
+
+        <button type="button">Add to Cart</button>
     </div>
 
-    <div class="column">
-        <img src="~/Content/NewFolder1/salad.jpg" alt="Salad" style="width:400px;height:300px;">
+    <!--1.4-->
+    <div class="column" style="float:left">
+
+        <img src="~/Content/NewFolder1/momo.jpg" style="padding-top:10px; width:400px;height:300px;">
         <table>
             <tr>
                 <th>Month</th>
@@ -86,73 +96,179 @@
                 <td>$100</td>
             </tr>
         </table>
+
+        <button type="button">Add to Cart</button>
     </div>
-</div>
 
+    <!--1.5-->
+    <div class="column" style="float:left; padding-left:20px;">
 
-@*<p>
-        @Html.ActionLink("Create New", "Create")
-    </p>
-    <table class="table">
-        <tr>
-            <th>
-
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.snackType)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.snackState)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.basePrice)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.quantity)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.unit)
-            </th>
-            <th>
-
-            </th>
-            <th>
-
-            </th>
-            <th></th>
-        </tr>
-
-        @foreach (var item in Model)
-        {
+        <img src="~/Content/NewFolder1/pancakes.jpg" alt="Pizza" style="padding-top:10px; width:400px;height:300px;">
+        <table style="padding-left:50px">
             <tr>
-                <td>
-                    @{
-                        <img src="@Url.Content("~/Content/Images/"+item.itemId+".png")" alt="Sample Image" width="100px" />
-                    }
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.snackType)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.snackState)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.basePrice)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.quantity)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.unit)
-                </td>
-                <td>
-                    <button id="increment" class="btn btn-info"><b>+</b></button>
-                    <button id="decrement" class="btn btn-info"><b>-</b></button>
-                </td>
-                <td>
-                    <input id="cartsize" type="text" value="0"/>
-                </td>
+                <th>Month</th>
+                <th>Savings</th>
             </tr>
-        }
+            <tr>
+                <td>January</td>
+                <td>$100</td>
+            </tr>
+        </table>
 
-    </table>*@
+        <button type="button">Add to Cart</button>
+    </div>
+
+    <!--1.6-->
+    <div class="column" style="float:left;padding-left:10px">
+        <img src="~/Content/NewFolder1/Pastry.jpg" alt="Pizza" style="padding-top:10px; width:400px;height:300px;">
+        <table style="padding-left:10px">
+            <tr>
+                <th>Month</th>
+                <th>Savings</th>
+            </tr>
+            <tr>
+                <td>January</td>
+                <td>$100</td>
+            </tr>
+        </table>
+
+        <button type="button">Add to Cart</button>
+    </div>
+
+    <!--1.7-->
+    <div class="column" style="float:left">
+
+        <img src="~/Content/NewFolder1/pizza.jpg" style="padding-top:10px; width:400px;height:300px;">
+        <table>
+            <tr>
+                <th>Month</th>
+                <th>Savings</th>
+            </tr>
+            <tr>
+                <td>January</td>
+                <td>$100</td>
+            </tr>
+        </table>
+
+        <button type="button">Add to Cart</button>
+    </div>
+
+    <!--1.8-->
+    <div class="column" style="float:left; padding-left:20px;">
+
+        <img src="~/Content/NewFolder1/salad.jpg" alt="Pizza" style="padding-top:10px; width:400px;height:300px;">
+        <table style="padding-left:50px">
+            <tr>
+                <th>Month</th>
+                <th>Savings</th>
+            </tr>
+            <tr>
+                <td>January</td>
+                <td>$100</td>
+            </tr>
+        </table>
+
+        <button type="button">Add to Cart</button>
+    </div>
+
+    <!--1.9-->
+    <div class="column" style="float:left;padding-left:10px">
+        <img src="~/Content/NewFolder1/pizza.jpg" alt="Pizza" style="padding-top:10px; width:400px;height:300px;">
+        <table style="padding-left:10px">
+            <tr>
+                <th>Month</th>
+                <th>Savings</th>
+            </tr>
+            <tr>
+                <td>January</td>
+                <td>$100</td>
+            </tr>
+        </table>
+
+        <button type="button">Add to Cart</button>
+    </div>
+    <!--1.10-->
+    <div class="column">
+        <img src="~/Content/NewFolder1/salad.jpg" alt="Salad" style="padding-top:10px; width:400px;height:300px;">
+        <table>
+            <tr>
+                <th>Month</th>
+                <th>Savings</th>
+            </tr>
+            <tr>
+                <td>January</td>
+                <td>$100</td>
+            </tr>
+        </table>
+        <button type="button">Add to Cart</button>
+        <br>
+    </div>
+
+
+
+    @*<p>
+            @Html.ActionLink("Create New", "Create")
+        </p>
+        <table class="table">
+            <tr>
+                <th>
+
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.snackType)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.snackState)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.basePrice)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.quantity)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.unit)
+                </th>
+                <th>
+
+                </th>
+                <th>
+
+                </th>
+                <th></th>
+            </tr>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @{
+                            <img src="@Url.Content("~/Content/Images/"+item.itemId+".png")" alt="Sample Image" width="100px" />
+                        }
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.snackType)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.snackState)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.basePrice)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.quantity)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.unit)
+                    </td>
+                    <td>
+                        <button id="increment" class="btn btn-info"><b>+</b></button>
+                        <button id="decrement" class="btn btn-info"><b>-</b></button>
+                    </td>
+                    <td>
+                        <input id="cartsize" type="text" value="0"/>
+                    </td>
+                </tr>
+            }
+
+        </table>*@
