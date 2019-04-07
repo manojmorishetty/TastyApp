@@ -1,0 +1,97 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="lunchboxModelStoreContainer" CdmEntityContainer="lunchboxEntities">
+    <EntitySetMapping Name="discounts">
+      <EntityTypeMapping TypeName="lunchboxModel.discount">
+        <MappingFragment StoreEntitySet="discounts">
+          <ScalarProperty Name="disId" ColumnName="disId" />
+          <ScalarProperty Name="percentage" ColumnName="percentage" />
+          <ScalarProperty Name="couponCode" ColumnName="couponCode" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="items">
+      <EntityTypeMapping TypeName="lunchboxModel.item">
+        <MappingFragment StoreEntitySet="items">
+          <ScalarProperty Name="img_src" ColumnName="img_src" />
+          <ScalarProperty Name="itemId" ColumnName="itemId" />
+          <ScalarProperty Name="snackType" ColumnName="snackType" />
+          <ScalarProperty Name="snackState" ColumnName="snackState" />
+          <ScalarProperty Name="basePrice" ColumnName="basePrice" />
+          <ScalarProperty Name="quantity" ColumnName="quantity" />
+          <ScalarProperty Name="unit" ColumnName="unit" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="orderDetails">
+      <EntityTypeMapping TypeName="lunchboxModel.orderDetail">
+        <MappingFragment StoreEntitySet="orderDetails">
+          <ScalarProperty Name="orderDetail_ID" ColumnName="orderDetail_ID" />
+          <ScalarProperty Name="orderID" ColumnName="orderID" />
+          <ScalarProperty Name="itemID" ColumnName="itemID" />
+          <ScalarProperty Name="quantity" ColumnName="quantity" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="orders">
+      <EntityTypeMapping TypeName="lunchboxModel.order">
+        <MappingFragment StoreEntitySet="orders">
+          <ScalarProperty Name="orderId" ColumnName="orderId" />
+          <ScalarProperty Name="uId" ColumnName="uId" />
+          <ScalarProperty Name="orderPrice" ColumnName="orderPrice" />
+          <ScalarProperty Name="orderStatus" ColumnName="orderStatus" />
+          <ScalarProperty Name="orderDate" ColumnName="orderDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="payments">
+      <EntityTypeMapping TypeName="lunchboxModel.payment">
+        <MappingFragment StoreEntitySet="payments">
+          <ScalarProperty Name="paymentID" ColumnName="paymentID" />
+          <ScalarProperty Name="nameOnCard" ColumnName="nameOnCard" />
+          <ScalarProperty Name="cardType" ColumnName="cardType" />
+          <ScalarProperty Name="cardNumber" ColumnName="cardNumber" />
+          <ScalarProperty Name="orderID" ColumnName="orderID" />
+          <ScalarProperty Name="expiryDate" ColumnName="expiryDate" />
+          <ScalarProperty Name="cvv" ColumnName="cvv" />
+          <ScalarProperty Name="discountID" ColumnName="discountID" />
+          <ScalarProperty Name="totalPrice" ColumnName="totalPrice" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="profiles">
+      <EntityTypeMapping TypeName="lunchboxModel.profile">
+        <MappingFragment StoreEntitySet="profiles">
+          <ScalarProperty Name="pId" ColumnName="pId" />
+          <ScalarProperty Name="uid" ColumnName="uid" />
+          <ScalarProperty Name="address" ColumnName="address" />
+          <ScalarProperty Name="city" ColumnName="city" />
+          <ScalarProperty Name="province" ColumnName="province" />
+          <ScalarProperty Name="country" ColumnName="country" />
+          <ScalarProperty Name="pic_url" ColumnName="pic_url" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="scheduleTypes">
+      <EntityTypeMapping TypeName="lunchboxModel.scheduleType">
+        <MappingFragment StoreEntitySet="scheduleType">
+          <ScalarProperty Name="scheduleID" ColumnName="scheduleID" />
+          <ScalarProperty Name="scheduleType1" ColumnName="scheduleType" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="users">
+      <EntityTypeMapping TypeName="lunchboxModel.user">
+        <MappingFragment StoreEntitySet="users">
+          <ScalarProperty Name="uId" ColumnName="uId" />
+          <ScalarProperty Name="UName" ColumnName="UName" />
+          <ScalarProperty Name="f_name" ColumnName="f_name" />
+          <ScalarProperty Name="l_name" ColumnName="l_name" />
+          <ScalarProperty Name="password" ColumnName="password" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="u_type" ColumnName="u_type" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

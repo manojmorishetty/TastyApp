@@ -1,0 +1,525 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="lunchboxModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="discounts">
+          <Key>
+            <PropertyRef Name="disId" />
+          </Key>
+          <Property Name="disId" Type="int" Nullable="false" />
+          <Property Name="percentage" Type="int" />
+          <Property Name="couponCode" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="items">
+          <Key>
+            <PropertyRef Name="itemId" />
+          </Key>
+          <Property Name="itemId" Type="int" Nullable="false" />
+          <Property Name="snackType" Type="nchar" MaxLength="10" />
+          <Property Name="snackState" Type="nchar" MaxLength="10" />
+          <Property Name="basePrice" Type="float" />
+          <Property Name="quantity" Type="int" />
+          <Property Name="unit" Type="int" />
+          <Property Name="img_src" Type="varchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="orderDetails">
+          <Key>
+            <PropertyRef Name="orderDetail_ID" />
+          </Key>
+          <Property Name="orderDetail_ID" Type="int" Nullable="false" />
+          <Property Name="orderID" Type="int" />
+          <Property Name="itemID" Type="int" />
+          <Property Name="quantity" Type="int" />
+        </EntityType>
+        <EntityType Name="orders">
+          <Key>
+            <PropertyRef Name="orderId" />
+          </Key>
+          <Property Name="orderId" Type="int" Nullable="false" />
+          <Property Name="uId" Type="int" />
+          <Property Name="orderPrice" Type="float" />
+          <Property Name="orderStatus" Type="varchar" MaxLength="50" />
+          <Property Name="orderDate" Type="nchar" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="payments">
+          <Key>
+            <PropertyRef Name="paymentID" />
+          </Key>
+          <Property Name="paymentID" Type="int" Nullable="false" />
+          <Property Name="nameOnCard" Type="varchar" MaxLength="50" />
+          <Property Name="cardType" Type="varchar" MaxLength="50" />
+          <Property Name="cardNumber" Type="bigint" />
+          <Property Name="orderID" Type="int" />
+          <Property Name="expiryDate" Type="varchar" MaxLength="50" />
+          <Property Name="cvv" Type="int" />
+          <Property Name="discountID" Type="int" />
+          <Property Name="totalPrice" Type="float" />
+        </EntityType>
+        <EntityType Name="profiles">
+          <Key>
+            <PropertyRef Name="pId" />
+          </Key>
+          <Property Name="pId" Type="int" Nullable="false" />
+          <Property Name="uid" Type="int" Nullable="false" />
+          <Property Name="address" Type="varchar" MaxLength="50" />
+          <Property Name="city" Type="nchar" MaxLength="10" />
+          <Property Name="province" Type="nchar" MaxLength="10" />
+          <Property Name="country" Type="nchar" MaxLength="10" />
+          <Property Name="pic_url" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="scheduleType">
+          <Key>
+            <PropertyRef Name="scheduleID" />
+          </Key>
+          <Property Name="scheduleID" Type="int" Nullable="false" />
+          <Property Name="scheduleType" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="users">
+          <Key>
+            <PropertyRef Name="uId" />
+          </Key>
+          <Property Name="uId" Type="int" Nullable="false" />
+          <Property Name="UName" Type="nvarchar" MaxLength="50" />
+          <Property Name="f_name" Type="nchar" MaxLength="10" />
+          <Property Name="l_name" Type="nchar" MaxLength="10" />
+          <Property Name="password" Type="varchar" MaxLength="10" />
+          <Property Name="email" Type="varchar" MaxLength="50" />
+          <Property Name="u_type" Type="int" />
+        </EntityType>
+        <Association Name="discount_payment">
+          <End Role="discounts" Type="Self.discounts" Multiplicity="0..1" />
+          <End Role="payments" Type="Self.payments" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="discounts">
+              <PropertyRef Name="disId" />
+            </Principal>
+            <Dependent Role="payments">
+              <PropertyRef Name="discountID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="item_orderDetail">
+          <End Role="items" Type="Self.items" Multiplicity="0..1" />
+          <End Role="orderDetails" Type="Self.orderDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="items">
+              <PropertyRef Name="itemId" />
+            </Principal>
+            <Dependent Role="orderDetails">
+              <PropertyRef Name="itemID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="oID_uID">
+          <End Role="users" Type="Self.users" Multiplicity="0..1" />
+          <End Role="orders" Type="Self.orders" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="users">
+              <PropertyRef Name="uId" />
+            </Principal>
+            <Dependent Role="orders">
+              <PropertyRef Name="uId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="order_orderDetail">
+          <End Role="orders" Type="Self.orders" Multiplicity="0..1" />
+          <End Role="orderDetails" Type="Self.orderDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="orders">
+              <PropertyRef Name="orderId" />
+            </Principal>
+            <Dependent Role="orderDetails">
+              <PropertyRef Name="orderID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="order_payment">
+          <End Role="orders" Type="Self.orders" Multiplicity="0..1" />
+          <End Role="payments" Type="Self.payments" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="orders">
+              <PropertyRef Name="orderId" />
+            </Principal>
+            <Dependent Role="payments">
+              <PropertyRef Name="orderID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="uid">
+          <End Role="users" Type="Self.users" Multiplicity="1" />
+          <End Role="profiles" Type="Self.profiles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="users">
+              <PropertyRef Name="uId" />
+            </Principal>
+            <Dependent Role="profiles">
+              <PropertyRef Name="uid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="lunchboxModelStoreContainer">
+          <EntitySet Name="discounts" EntityType="Self.discounts" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="items" EntityType="Self.items" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="orderDetails" EntityType="Self.orderDetails" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="orders" EntityType="Self.orders" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="payments" EntityType="Self.payments" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="profiles" EntityType="Self.profiles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="scheduleType" EntityType="Self.scheduleType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="users" EntityType="Self.users" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="discount_payment" Association="Self.discount_payment">
+            <End Role="discounts" EntitySet="discounts" />
+            <End Role="payments" EntitySet="payments" />
+          </AssociationSet>
+          <AssociationSet Name="item_orderDetail" Association="Self.item_orderDetail">
+            <End Role="items" EntitySet="items" />
+            <End Role="orderDetails" EntitySet="orderDetails" />
+          </AssociationSet>
+          <AssociationSet Name="oID_uID" Association="Self.oID_uID">
+            <End Role="users" EntitySet="users" />
+            <End Role="orders" EntitySet="orders" />
+          </AssociationSet>
+          <AssociationSet Name="order_orderDetail" Association="Self.order_orderDetail">
+            <End Role="orders" EntitySet="orders" />
+            <End Role="orderDetails" EntitySet="orderDetails" />
+          </AssociationSet>
+          <AssociationSet Name="order_payment" Association="Self.order_payment">
+            <End Role="orders" EntitySet="orders" />
+            <End Role="payments" EntitySet="payments" />
+          </AssociationSet>
+          <AssociationSet Name="uid" Association="Self.uid">
+            <End Role="users" EntitySet="users" />
+            <End Role="profiles" EntitySet="profiles" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="lunchboxModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="discount">
+          <Key>
+            <PropertyRef Name="disId" />
+          </Key>
+          <Property Name="disId" Type="Int32" Nullable="false" />
+          <Property Name="percentage" Type="Int32" />
+          <Property Name="couponCode" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="payments" Relationship="Self.discount_payment" FromRole="discounts" ToRole="payments" />
+        </EntityType>
+        <EntityType Name="item">
+          <Key>
+            <PropertyRef Name="itemId" />
+          </Key>
+          <Property Name="itemId" Type="Int32" Nullable="false" />
+          <Property Name="snackType" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="snackState" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="basePrice" Type="Double" />
+          <Property Name="quantity" Type="Int32" />
+          <Property Name="unit" Type="Int32" />
+          <NavigationProperty Name="orderDetails" Relationship="Self.item_orderDetail" FromRole="items" ToRole="orderDetails" />
+          <Property Name="img_src" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="orderDetail">
+          <Key>
+            <PropertyRef Name="orderDetail_ID" />
+          </Key>
+          <Property Name="orderDetail_ID" Type="Int32" Nullable="false" />
+          <Property Name="orderID" Type="Int32" />
+          <Property Name="itemID" Type="Int32" />
+          <Property Name="quantity" Type="Int32" />
+          <NavigationProperty Name="item" Relationship="Self.item_orderDetail" FromRole="orderDetails" ToRole="items" />
+          <NavigationProperty Name="order" Relationship="Self.order_orderDetail" FromRole="orderDetails" ToRole="orders" />
+        </EntityType>
+        <EntityType Name="order">
+          <Key>
+            <PropertyRef Name="orderId" />
+          </Key>
+          <Property Name="orderId" Type="Int32" Nullable="false" />
+          <Property Name="uId" Type="Int32" />
+          <Property Name="orderPrice" Type="Double" />
+          <Property Name="orderStatus" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="orderDate" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <NavigationProperty Name="orderDetails" Relationship="Self.order_orderDetail" FromRole="orders" ToRole="orderDetails" />
+          <NavigationProperty Name="user" Relationship="Self.oID_uID" FromRole="orders" ToRole="users" />
+          <NavigationProperty Name="payments" Relationship="Self.order_payment" FromRole="orders" ToRole="payments" />
+        </EntityType>
+        <EntityType Name="payment">
+          <Key>
+            <PropertyRef Name="paymentID" />
+          </Key>
+          <Property Name="paymentID" Type="Int32" Nullable="false" />
+          <Property Name="nameOnCard" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="cardType" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="cardNumber" Type="Int64" />
+          <Property Name="orderID" Type="Int32" />
+          <Property Name="expiryDate" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="cvv" Type="Int32" />
+          <Property Name="discountID" Type="Int32" />
+          <Property Name="totalPrice" Type="Double" />
+          <NavigationProperty Name="discount" Relationship="Self.discount_payment" FromRole="payments" ToRole="discounts" />
+          <NavigationProperty Name="order" Relationship="Self.order_payment" FromRole="payments" ToRole="orders" />
+        </EntityType>
+        <EntityType Name="profile">
+          <Key>
+            <PropertyRef Name="pId" />
+          </Key>
+          <Property Name="pId" Type="Int32" Nullable="false" />
+          <Property Name="uid" Type="Int32" Nullable="false" />
+          <Property Name="address" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="city" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="province" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="country" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="pic_url" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="user" Relationship="Self.uid" FromRole="profiles" ToRole="users" />
+        </EntityType>
+        <EntityType Name="scheduleType">
+          <Key>
+            <PropertyRef Name="scheduleID" />
+          </Key>
+          <Property Name="scheduleID" Type="Int32" Nullable="false" />
+          <Property Name="scheduleType1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="user">
+          <Key>
+            <PropertyRef Name="uId" />
+          </Key>
+          <Property Name="uId" Type="Int32" Nullable="false" />
+          <Property Name="UName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="f_name" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="l_name" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="password" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="u_type" Type="Int32" />
+          <NavigationProperty Name="orders" Relationship="Self.oID_uID" FromRole="users" ToRole="orders" />
+          <NavigationProperty Name="profiles" Relationship="Self.uid" FromRole="users" ToRole="profiles" />
+        </EntityType>
+        <Association Name="discount_payment">
+          <End Role="discounts" Type="Self.discount" Multiplicity="0..1" />
+          <End Role="payments" Type="Self.payment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="discounts">
+              <PropertyRef Name="disId" />
+            </Principal>
+            <Dependent Role="payments">
+              <PropertyRef Name="discountID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="item_orderDetail">
+          <End Role="items" Type="Self.item" Multiplicity="0..1" />
+          <End Role="orderDetails" Type="Self.orderDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="items">
+              <PropertyRef Name="itemId" />
+            </Principal>
+            <Dependent Role="orderDetails">
+              <PropertyRef Name="itemID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="order_orderDetail">
+          <End Role="orders" Type="Self.order" Multiplicity="0..1" />
+          <End Role="orderDetails" Type="Self.orderDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="orders">
+              <PropertyRef Name="orderId" />
+            </Principal>
+            <Dependent Role="orderDetails">
+              <PropertyRef Name="orderID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="oID_uID">
+          <End Role="users" Type="Self.user" Multiplicity="0..1" />
+          <End Role="orders" Type="Self.order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="users">
+              <PropertyRef Name="uId" />
+            </Principal>
+            <Dependent Role="orders">
+              <PropertyRef Name="uId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="order_payment">
+          <End Role="orders" Type="Self.order" Multiplicity="0..1" />
+          <End Role="payments" Type="Self.payment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="orders">
+              <PropertyRef Name="orderId" />
+            </Principal>
+            <Dependent Role="payments">
+              <PropertyRef Name="orderID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="uid">
+          <End Role="users" Type="Self.user" Multiplicity="1" />
+          <End Role="profiles" Type="Self.profile" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="users">
+              <PropertyRef Name="uId" />
+            </Principal>
+            <Dependent Role="profiles">
+              <PropertyRef Name="uid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="lunchboxEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="discounts" EntityType="Self.discount" />
+          <EntitySet Name="items" EntityType="Self.item" />
+          <EntitySet Name="orderDetails" EntityType="Self.orderDetail" />
+          <EntitySet Name="orders" EntityType="Self.order" />
+          <EntitySet Name="payments" EntityType="Self.payment" />
+          <EntitySet Name="profiles" EntityType="Self.profile" />
+          <EntitySet Name="scheduleTypes" EntityType="Self.scheduleType" />
+          <EntitySet Name="users" EntityType="Self.user" />
+          <AssociationSet Name="discount_payment" Association="Self.discount_payment">
+            <End Role="discounts" EntitySet="discounts" />
+            <End Role="payments" EntitySet="payments" />
+          </AssociationSet>
+          <AssociationSet Name="item_orderDetail" Association="Self.item_orderDetail">
+            <End Role="items" EntitySet="items" />
+            <End Role="orderDetails" EntitySet="orderDetails" />
+          </AssociationSet>
+          <AssociationSet Name="order_orderDetail" Association="Self.order_orderDetail">
+            <End Role="orders" EntitySet="orders" />
+            <End Role="orderDetails" EntitySet="orderDetails" />
+          </AssociationSet>
+          <AssociationSet Name="oID_uID" Association="Self.oID_uID">
+            <End Role="users" EntitySet="users" />
+            <End Role="orders" EntitySet="orders" />
+          </AssociationSet>
+          <AssociationSet Name="order_payment" Association="Self.order_payment">
+            <End Role="orders" EntitySet="orders" />
+            <End Role="payments" EntitySet="payments" />
+          </AssociationSet>
+          <AssociationSet Name="uid" Association="Self.uid">
+            <End Role="users" EntitySet="users" />
+            <End Role="profiles" EntitySet="profiles" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="lunchboxModelStoreContainer" CdmEntityContainer="lunchboxEntities">
+          <EntitySetMapping Name="discounts">
+            <EntityTypeMapping TypeName="lunchboxModel.discount">
+              <MappingFragment StoreEntitySet="discounts">
+                <ScalarProperty Name="disId" ColumnName="disId" />
+                <ScalarProperty Name="percentage" ColumnName="percentage" />
+                <ScalarProperty Name="couponCode" ColumnName="couponCode" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="items">
+            <EntityTypeMapping TypeName="lunchboxModel.item">
+              <MappingFragment StoreEntitySet="items">
+                <ScalarProperty Name="img_src" ColumnName="img_src" />
+                <ScalarProperty Name="itemId" ColumnName="itemId" />
+                <ScalarProperty Name="snackType" ColumnName="snackType" />
+                <ScalarProperty Name="snackState" ColumnName="snackState" />
+                <ScalarProperty Name="basePrice" ColumnName="basePrice" />
+                <ScalarProperty Name="quantity" ColumnName="quantity" />
+                <ScalarProperty Name="unit" ColumnName="unit" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="orderDetails">
+            <EntityTypeMapping TypeName="lunchboxModel.orderDetail">
+              <MappingFragment StoreEntitySet="orderDetails">
+                <ScalarProperty Name="orderDetail_ID" ColumnName="orderDetail_ID" />
+                <ScalarProperty Name="orderID" ColumnName="orderID" />
+                <ScalarProperty Name="itemID" ColumnName="itemID" />
+                <ScalarProperty Name="quantity" ColumnName="quantity" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="orders">
+            <EntityTypeMapping TypeName="lunchboxModel.order">
+              <MappingFragment StoreEntitySet="orders">
+                <ScalarProperty Name="orderId" ColumnName="orderId" />
+                <ScalarProperty Name="uId" ColumnName="uId" />
+                <ScalarProperty Name="orderPrice" ColumnName="orderPrice" />
+                <ScalarProperty Name="orderStatus" ColumnName="orderStatus" />
+                <ScalarProperty Name="orderDate" ColumnName="orderDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="payments">
+            <EntityTypeMapping TypeName="lunchboxModel.payment">
+              <MappingFragment StoreEntitySet="payments">
+                <ScalarProperty Name="paymentID" ColumnName="paymentID" />
+                <ScalarProperty Name="nameOnCard" ColumnName="nameOnCard" />
+                <ScalarProperty Name="cardType" ColumnName="cardType" />
+                <ScalarProperty Name="cardNumber" ColumnName="cardNumber" />
+                <ScalarProperty Name="orderID" ColumnName="orderID" />
+                <ScalarProperty Name="expiryDate" ColumnName="expiryDate" />
+                <ScalarProperty Name="cvv" ColumnName="cvv" />
+                <ScalarProperty Name="discountID" ColumnName="discountID" />
+                <ScalarProperty Name="totalPrice" ColumnName="totalPrice" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="profiles">
+            <EntityTypeMapping TypeName="lunchboxModel.profile">
+              <MappingFragment StoreEntitySet="profiles">
+                <ScalarProperty Name="pId" ColumnName="pId" />
+                <ScalarProperty Name="uid" ColumnName="uid" />
+                <ScalarProperty Name="address" ColumnName="address" />
+                <ScalarProperty Name="city" ColumnName="city" />
+                <ScalarProperty Name="province" ColumnName="province" />
+                <ScalarProperty Name="country" ColumnName="country" />
+                <ScalarProperty Name="pic_url" ColumnName="pic_url" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="scheduleTypes">
+            <EntityTypeMapping TypeName="lunchboxModel.scheduleType">
+              <MappingFragment StoreEntitySet="scheduleType">
+                <ScalarProperty Name="scheduleID" ColumnName="scheduleID" />
+                <ScalarProperty Name="scheduleType1" ColumnName="scheduleType" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="users">
+            <EntityTypeMapping TypeName="lunchboxModel.user">
+              <MappingFragment StoreEntitySet="users">
+                <ScalarProperty Name="uId" ColumnName="uId" />
+                <ScalarProperty Name="UName" ColumnName="UName" />
+                <ScalarProperty Name="f_name" ColumnName="f_name" />
+                <ScalarProperty Name="l_name" ColumnName="l_name" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="u_type" ColumnName="u_type" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

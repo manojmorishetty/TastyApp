@@ -1,0 +1,193 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="lunchboxModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="discounts">
+    <Key>
+      <PropertyRef Name="disId" />
+    </Key>
+    <Property Name="disId" Type="int" Nullable="false" />
+    <Property Name="percentage" Type="int" />
+    <Property Name="couponCode" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="items">
+    <Key>
+      <PropertyRef Name="itemId" />
+    </Key>
+    <Property Name="itemId" Type="int" Nullable="false" />
+    <Property Name="snackType" Type="nchar" MaxLength="10" />
+    <Property Name="snackState" Type="nchar" MaxLength="10" />
+    <Property Name="basePrice" Type="float" />
+    <Property Name="quantity" Type="int" />
+    <Property Name="unit" Type="int" />
+    <Property Name="img_src" Type="varchar" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="orderDetails">
+    <Key>
+      <PropertyRef Name="orderDetail_ID" />
+    </Key>
+    <Property Name="orderDetail_ID" Type="int" Nullable="false" />
+    <Property Name="orderID" Type="int" />
+    <Property Name="itemID" Type="int" />
+    <Property Name="quantity" Type="int" />
+  </EntityType>
+  <EntityType Name="orders">
+    <Key>
+      <PropertyRef Name="orderId" />
+    </Key>
+    <Property Name="orderId" Type="int" Nullable="false" />
+    <Property Name="uId" Type="int" />
+    <Property Name="orderPrice" Type="float" />
+    <Property Name="orderStatus" Type="varchar" MaxLength="50" />
+    <Property Name="orderDate" Type="nchar" MaxLength="10" />
+  </EntityType>
+  <EntityType Name="payments">
+    <Key>
+      <PropertyRef Name="paymentID" />
+    </Key>
+    <Property Name="paymentID" Type="int" Nullable="false" />
+    <Property Name="nameOnCard" Type="varchar" MaxLength="50" />
+    <Property Name="cardType" Type="varchar" MaxLength="50" />
+    <Property Name="cardNumber" Type="bigint" />
+    <Property Name="orderID" Type="int" />
+    <Property Name="expiryDate" Type="varchar" MaxLength="50" />
+    <Property Name="cvv" Type="int" />
+    <Property Name="discountID" Type="int" />
+    <Property Name="totalPrice" Type="float" />
+  </EntityType>
+  <EntityType Name="profiles">
+    <Key>
+      <PropertyRef Name="pId" />
+    </Key>
+    <Property Name="pId" Type="int" Nullable="false" />
+    <Property Name="uid" Type="int" Nullable="false" />
+    <Property Name="address" Type="varchar" MaxLength="50" />
+    <Property Name="city" Type="nchar" MaxLength="10" />
+    <Property Name="province" Type="nchar" MaxLength="10" />
+    <Property Name="country" Type="nchar" MaxLength="10" />
+    <Property Name="pic_url" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="scheduleType">
+    <Key>
+      <PropertyRef Name="scheduleID" />
+    </Key>
+    <Property Name="scheduleID" Type="int" Nullable="false" />
+    <Property Name="scheduleType" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="users">
+    <Key>
+      <PropertyRef Name="uId" />
+    </Key>
+    <Property Name="uId" Type="int" Nullable="false" />
+    <Property Name="UName" Type="nvarchar" MaxLength="50" />
+    <Property Name="f_name" Type="nchar" MaxLength="10" />
+    <Property Name="l_name" Type="nchar" MaxLength="10" />
+    <Property Name="password" Type="varchar" MaxLength="10" />
+    <Property Name="email" Type="varchar" MaxLength="50" />
+    <Property Name="u_type" Type="int" />
+  </EntityType>
+  <Association Name="discount_payment">
+    <End Role="discounts" Type="Self.discounts" Multiplicity="0..1" />
+    <End Role="payments" Type="Self.payments" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="discounts">
+        <PropertyRef Name="disId" />
+      </Principal>
+      <Dependent Role="payments">
+        <PropertyRef Name="discountID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="item_orderDetail">
+    <End Role="items" Type="Self.items" Multiplicity="0..1" />
+    <End Role="orderDetails" Type="Self.orderDetails" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="items">
+        <PropertyRef Name="itemId" />
+      </Principal>
+      <Dependent Role="orderDetails">
+        <PropertyRef Name="itemID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="oID_uID">
+    <End Role="users" Type="Self.users" Multiplicity="0..1" />
+    <End Role="orders" Type="Self.orders" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="users">
+        <PropertyRef Name="uId" />
+      </Principal>
+      <Dependent Role="orders">
+        <PropertyRef Name="uId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="order_orderDetail">
+    <End Role="orders" Type="Self.orders" Multiplicity="0..1" />
+    <End Role="orderDetails" Type="Self.orderDetails" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="orders">
+        <PropertyRef Name="orderId" />
+      </Principal>
+      <Dependent Role="orderDetails">
+        <PropertyRef Name="orderID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="order_payment">
+    <End Role="orders" Type="Self.orders" Multiplicity="0..1" />
+    <End Role="payments" Type="Self.payments" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="orders">
+        <PropertyRef Name="orderId" />
+      </Principal>
+      <Dependent Role="payments">
+        <PropertyRef Name="orderID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="uid">
+    <End Role="users" Type="Self.users" Multiplicity="1" />
+    <End Role="profiles" Type="Self.profiles" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="users">
+        <PropertyRef Name="uId" />
+      </Principal>
+      <Dependent Role="profiles">
+        <PropertyRef Name="uid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="lunchboxModelStoreContainer">
+    <EntitySet Name="discounts" EntityType="Self.discounts" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="items" EntityType="Self.items" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="orderDetails" EntityType="Self.orderDetails" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="orders" EntityType="Self.orders" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="payments" EntityType="Self.payments" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="profiles" EntityType="Self.profiles" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="scheduleType" EntityType="Self.scheduleType" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="users" EntityType="Self.users" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="discount_payment" Association="Self.discount_payment">
+      <End Role="discounts" EntitySet="discounts" />
+      <End Role="payments" EntitySet="payments" />
+    </AssociationSet>
+    <AssociationSet Name="item_orderDetail" Association="Self.item_orderDetail">
+      <End Role="items" EntitySet="items" />
+      <End Role="orderDetails" EntitySet="orderDetails" />
+    </AssociationSet>
+    <AssociationSet Name="oID_uID" Association="Self.oID_uID">
+      <End Role="users" EntitySet="users" />
+      <End Role="orders" EntitySet="orders" />
+    </AssociationSet>
+    <AssociationSet Name="order_orderDetail" Association="Self.order_orderDetail">
+      <End Role="orders" EntitySet="orders" />
+      <End Role="orderDetails" EntitySet="orderDetails" />
+    </AssociationSet>
+    <AssociationSet Name="order_payment" Association="Self.order_payment">
+      <End Role="orders" EntitySet="orders" />
+      <End Role="payments" EntitySet="payments" />
+    </AssociationSet>
+    <AssociationSet Name="uid" Association="Self.uid">
+      <End Role="users" EntitySet="users" />
+      <End Role="profiles" EntitySet="profiles" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

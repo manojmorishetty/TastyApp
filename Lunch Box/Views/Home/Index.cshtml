@@ -1,0 +1,91 @@
+﻿@model IEnumerable<Lunch_Box.item>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<script type="text\javascript">
+    jQuery(function(){
+        jQuery("#increment").on('click', function() {
+            var cartsize = jQuery("#cartsize"),
+            value = jQuery("#cartsize").html();
+            cartsize.html(value++);
+        });
+    });
+    jQuery(function(){
+        jQuery("#decrement").on('click', function() {
+            var cartsize = jQuery("#cartsize"),
+            value = jQuery("#cartsize").html();
+            cartsize.html(value--);
+        });
+    });
+</script>
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.snackType)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.snackState)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.basePrice)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.quantity)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.unit)
+        </th>
+        <th>
+
+        </th>
+        <th>
+
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @{
+                    <img src="@Url.Content("~/Content/Images/"+item.itemId+".png")" alt="Sample Image" width="100px" />
+                }
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.snackType)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.snackState)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.basePrice)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.quantity)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.unit)
+            </td>
+            <td>
+                <button id="increment" class="btn btn-info"><b>+</b></button>
+                <button id="decrement" class="btn btn-info"><b>-</b></button>
+            </td>
+            <td>
+                <input id="cartsize" type="text" value="0"/>
+            </td>
+        </tr>
+    }
+
+</table>

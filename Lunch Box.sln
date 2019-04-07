@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.329
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lunch Box", "Lunch Box\Lunch Box.csproj", "{C1846829-3CCC-4EFD-A704-89A4459F2429}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataAccess", "DataAccess\DataAccess.csproj", "{A5AA7808-7789-4E75-81EC-BBAEAD4F117D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C1846829-3CCC-4EFD-A704-89A4459F2429}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C1846829-3CCC-4EFD-A704-89A4459F2429}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C1846829-3CCC-4EFD-A704-89A4459F2429}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C1846829-3CCC-4EFD-A704-89A4459F2429}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A5AA7808-7789-4E75-81EC-BBAEAD4F117D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A5AA7808-7789-4E75-81EC-BBAEAD4F117D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A5AA7808-7789-4E75-81EC-BBAEAD4F117D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A5AA7808-7789-4E75-81EC-BBAEAD4F117D}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {5B874A76-AF4C-4782-A5E8-831F593BFDB2}
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="4e8378e017e041288d5532a0ca38e481" Name="Diagram1">
+        <EntityTypeShape EntityType="lunchboxModel.discount" Width="1.5" PointX="2.75" PointY="0.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="lunchboxModel.item" Width="1.5" PointX="0.5" PointY="0.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="lunchboxModel.orderDetail" Width="1.5" PointX="5.125" PointY="3.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="lunchboxModel.order" Width="1.5" PointX="2.375" PointY="2.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="lunchboxModel.payment" Width="1.5" PointX="7.5" PointY="3" IsExpanded="true" />
+        <EntityTypeShape EntityType="lunchboxModel.profile" Width="1.5" PointX="2.875" PointY="6" IsExpanded="true" />
+        <EntityTypeShape EntityType="lunchboxModel.scheduleType" Width="1.5" PointX="5.125" PointY="6" IsExpanded="true" />
+        <EntityTypeShape EntityType="lunchboxModel.user" Width="1.5" PointX="0.875" PointY="5.75" IsExpanded="true" />
+        <AssociationConnector Association="lunchboxModel.discount_payment" ManuallyRouted="false" />
+        <AssociationConnector Association="lunchboxModel.item_orderDetail" ManuallyRouted="false" />
+        <AssociationConnector Association="lunchboxModel.order_orderDetail" ManuallyRouted="false" />
+        <AssociationConnector Association="lunchboxModel.oID_uID" ManuallyRouted="false" />
+        <AssociationConnector Association="lunchboxModel.order_payment" ManuallyRouted="false" />
+        <AssociationConnector Association="lunchboxModel.uid" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

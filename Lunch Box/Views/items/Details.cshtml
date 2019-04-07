@@ -1,0 +1,58 @@
+﻿@model Lunch_Box.item
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>item</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.snackType)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.snackType)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.snackState)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.snackState)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.basePrice)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.basePrice)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.quantity)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.quantity)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.unit)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.unit)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.itemId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
