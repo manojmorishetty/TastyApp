@@ -1,0 +1,82 @@
+﻿@model Lunch_Box.payment
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>payment</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.nameOnCard)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.nameOnCard)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.cardType)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.cardType)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.cardNumber)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.cardNumber)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.expiryDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.expiryDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.cvv)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.cvv)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.totalPrice)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.totalPrice)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.discount.couponCode)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.discount.couponCode)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.order.orderStatus)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.order.orderStatus)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.paymentID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

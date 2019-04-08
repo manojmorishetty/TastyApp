@@ -2,8 +2,12 @@
   "ExpandedNodes": [
     "",
     "\\Lunch Box",
-    "\\Lunch Box\\Content"
+    "\\Lunch Box\\Controllers",
+    "\\Lunch Box\\Models",
+    "\\Lunch Box\\obj",
+    "\\Lunch Box\\Views",
+    "\\Lunch Box\\Views\\payments"
   ],
-  "SelectedNode": "\\Lunch Box\\Controllers",
+  "SelectedNode": "\\Lunch Box.sln",
   "PreviewInSolutionExplorer": false
 }
